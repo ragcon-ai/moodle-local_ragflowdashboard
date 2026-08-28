@@ -1,0 +1,201 @@
+/* RAGflow Dashboard. */
+
+/* Shared "area" box (lightly shaded, separated) — used across all tabs. */
+.rfd-box,
+.rfd-chart-wrap,
+.rfd-status-box {
+    background: #f6f7f9;
+    border: 1px solid #dee2e6;
+    border-radius: 0.35rem;
+    padding: 0.75rem 1rem;
+    margin-bottom: 1rem;
+}
+
+/* Uniform chart sizing; pie/doughnut charts render smaller. */
+.rfd-chart {
+    max-width: 560px;
+    margin-left: auto;
+    margin-right: auto;
+}
+.rfd-chart--pie {
+    max-width: 340px;
+}
+/* Moodle runs Chart.js with maintainAspectRatio:false, so the canvas fills its parent box. Give that box a
+   fixed height and cap the canvas width to 100% — the chart then sizes to the (centered) container instead
+   of inflating its width and overflowing. */
+.rfd-chart .chart-image {
+    position: relative;
+    width: 100%;
+    height: 300px;
+    margin-bottom: 0.15rem;
+}
+.rfd-chart--pie .chart-image {
+    height: 280px;
+}
+/* Canonical Chart.js responsive container: an absolutely-positioned canvas fills the fixed-size parent
+   exactly, so its width can never overflow .rfd-chart (maintainAspectRatio:false would otherwise inflate it). */
+.rfd-chart .chart-image canvas {
+    position: absolute;
+    top: 0;
+    left: 0;
+    /* Override Chart.js's inline pixel width/height so the canvas fills (not overflows) the fixed-size box. */
+    width: 100% !important; /* stylelint-disable-line declaration-no-important */
+    height: 100% !important; /* stylelint-disable-line declaration-no-important */
+}
+.rfd-chart .chart-area {
+    margin-bottom: 0;
+}
+.rfd-chart .chart-table-expand {
+    margin-top: 0;
+}
+
+/* Collapsible accordions: chart sections (Usage/Errors) and Status check rows. */
+.rfd-accordion > summary {
+    cursor: pointer;
+}
+.rfd-chart-wrap.rfd-accordion > summary {
+    font-weight: 600;
+    font-size: 1.05rem;
+    margin-bottom: 0.5rem;
+}
+.rfd-check > summary {
+    padding: 0.15rem 0;
+}
+.rfd-check[open] > summary {
+    margin-bottom: 0.35rem;
+}
+
+/* Colour-coded chart data table: a swatch (circle) per row in the chart's colour for that item. */
+.rfd-swatch {
+    display: inline-block;
+    width: 0.7rem;
+    height: 0.7rem;
+    border-radius: 50%;
+    margin-right: 0.4rem;
+    vertical-align: middle;
+}
+.rfd-chart-data {
+    width: 100%;
+    margin: 0.6rem auto 0;
+    background: #fff;
+    text-align: left;
+}
+.rfd-chart-data tr.r1 td {
+    background: #f1f3f5;
+}
+/* Prefer our colour-coded table over Chart.js's plain auto-generated one. */
+.rfd-chart .chart-table {
+    display: none;
+}
+
+/* Status tab box header (title + last-checked + refresh button). */
+.rfd-status-box__head {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    flex-wrap: wrap;
+    margin-bottom: 0.5rem;
+}
+.rfd-status-box__head h4 {
+    margin: 0;
+    flex: 1 1 auto;
+}
+.rfd-status-box__time {
+    color: #6c757d;
+    font-size: 0.85rem;
+}
+.rfd-status {
+    margin-bottom: 0;
+}
+.rfd-status li {
+    padding: 0.15rem 0;
+}
+
+/* Top-level Status sections (System configuration / Plugin instances). */
+.rfd-status-section {
+    margin-bottom: 1.25rem;
+}
+.rfd-status-section > summary {
+    margin-bottom: 0.75rem;
+}
+.rfd-status-section > summary h3 {
+    display: inline;
+    font-size: 1.15rem;
+    margin: 0;
+}
+/* System-configuration grid: three equal-height boxes side by side (Bootstrap stacks them on narrow). */
+.rfd-status-sysgrid .rfd-status-box {
+    height: 100%;
+    margin-bottom: 0;
+}
+.rfd-status-sysgrid > [class*="col-"] {
+    margin-bottom: 1rem;
+}
+/* Plugin-instance rows: course + RAGflow links (clearly marked; external ones open in a new window). */
+.rfd-instance-links {
+    margin-bottom: 0.5rem;
+}
+.rfd-instance-links li {
+    display: block;
+    padding: 0.1rem 0;
+}
+.rfd-instance-link {
+    display: inline-block;
+    font-weight: 500;
+}
+.rfd-ext-icon {
+    font-size: 0.85em;
+    opacity: 0.75;
+    margin-left: 0.1rem;
+}
+.rfd-status-settings {
+    font-size: 0.9em;
+}
+.rfd-instance-filter {
+    max-width: 24rem;
+}
+
+/* Raw API-call log accordion. */
+.ragflow-apicall {
+    border: 1px solid #dee2e6;
+    border-radius: 0.25rem;
+    margin-bottom: 0.4rem;
+    background: #fff;
+}
+.ragflow-apicall > summary {
+    cursor: pointer;
+    padding: 0.4rem 0.6rem;
+}
+.ragflow-apicall__pre {
+    max-height: 22rem;
+    overflow: auto;
+    white-space: pre-wrap;
+    word-break: break-word;
+    background: #f8f9fa;
+    padding: 0.5rem;
+    border-radius: 0.25rem;
+}
+
+/* Zebra striping for all dashboard tables (Moodle html_table adds r0/r1 row classes). */
+.rfd-box table.generaltable,
+.rfd-chart .chart-table-data table {
+    background: #fff;
+}
+.rfd-box table.generaltable tr.r1 td,
+.rfd-box table.generaltable tr.r1 th,
+.rfd-box table.generaltable tbody tr:nth-child(even) td,
+.rfd-chart .chart-table-data table tr:nth-child(even) td,
+.rfd-chart .chart-table-data table tr:nth-child(even) th {
+    background: #f1f3f5;
+}
+/* The chart-data table (under "Show chart data") reads like the Recent errors table: full width, left-aligned. */
+.rfd-chart .chart-table-data {
+    text-align: left;
+}
+.rfd-chart .chart-table-data table {
+    width: 100%;
+}
+/* The API-call log rows alternate too. */
+.ragflow-apicall:nth-of-type(even) {
+    background: #f1f3f5;
+}

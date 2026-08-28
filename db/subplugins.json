@@ -1,0 +1,8 @@
+{
+    "subplugintypes": {
+        "rfdsource": "source"
+    },
+    "plugintypes": {
+        "rfdsource": "local/ragflowdashboard/source"
+    }
+}
