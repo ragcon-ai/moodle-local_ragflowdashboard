@@ -1,6 +1,6 @@
 # Tests – local_ragflowdashboard
 
-**Plugin version:** `2026082500` (release `0.6.9`) — update this line whenever the tests or the plugin
+**Plugin version:** `2026090200` (release `0.7.1`) — update this line whenever the tests or the plugin
 version change.
 
 PHPUnit tests for this plugin. They run automatically in the bundled **moodle-plugin-ci** GitHub Actions

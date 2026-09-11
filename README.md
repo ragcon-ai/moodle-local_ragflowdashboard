@@ -82,6 +82,10 @@ Professional support and web hosting for RAGflow + Moodle are available from **R
 
 ## Changelog ##
 
+### 0.7.1 ###
+
+* **Maintenance release.** Internal test-documentation housekeeping (test-suite version marker aligned with the plugin version). No functional or API change.
+
 ### 0.7.0 ###
 
 * **First public release (beta).** An admin-only usage-and-health report for the RAGflow suite: a tabbed

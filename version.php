@@ -25,10 +25,10 @@
 defined('MOODLE_INTERNAL') || die();
 
 $plugin->component = 'local_ragflowdashboard';
-$plugin->version   = 2026082810;
+$plugin->version   = 2026090200;
 $plugin->requires  = 2025041400; // Moodle 5.0 (minimum; supports 5.0-5.2).
 $plugin->maturity  = MATURITY_BETA;
-$plugin->release   = '0.7.0';
+$plugin->release   = '0.7.1';
 $plugin->dependencies = [
     'aiprovider_ragflow' => ANY_VERSION, // Shared usage/capture API + provider backend.
 ];
